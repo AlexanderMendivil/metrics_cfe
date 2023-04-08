@@ -5,12 +5,16 @@ import { Indications, MetricsForm } from '../components';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import React from 'react';
+import { AppContext } from '../context/AppContext';
 
 const steps = ['RHX', 'RY', 'RHX-Y'];
 
 export const Layout = () =>  {
+
+  const context = useContext(AppContext);
+  
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set<number>());
 
@@ -40,8 +44,6 @@ export const Layout = () =>  {
 
   const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
       throw new Error("You can't skip a step that isn't optional.");
     }
 
@@ -57,12 +59,15 @@ export const Layout = () =>  {
     setActiveStep(0);
   };
 
+  const handleChange = () =>{
+    
+  }
 
   return (
 
     <Box sx={{ flexGrow: 1 }}>
       <Typography variant='h5' align='center'>Conexiones de prueba</Typography>
-      <Grid container>
+      <Grid container spacing={2}>
             <Grid item xs={6}>
                 <Indications/>
             </Grid>
@@ -70,8 +75,7 @@ export const Layout = () =>  {
                 <MetricsForm/>
             </Grid>
 
-      </Grid>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', marginLeft: 10, marginRight: 10 }}>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps: { completed?: boolean } = {};
@@ -128,6 +132,7 @@ export const Layout = () =>  {
         </React.Fragment>
       )}
     </Box>
+      </Grid>
     </Box>
   );
 }
