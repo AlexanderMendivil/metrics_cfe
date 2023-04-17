@@ -59,20 +59,28 @@ export const Layout = () =>  {
     setActiveStep(0);
   };
 
-  const handleChange = () =>{
-    
-  }
-
   return (
 
     <Box sx={{ flexGrow: 1 }}>
       <Typography variant='h5' align='center'>Conexiones de prueba</Typography>
       <Grid container spacing={2}>
             <Grid item xs={6}>
-                <Indications/>
+          
+              {
+              activeStep === 0 ? <Indications title='RHX' line='HX' guard='Y' land='Tanque' /> 
+              : activeStep === 1  ? <Indications title='Ry' line='Y' guard='HX' land='Tanque' /> 
+              : activeStep === 2 ? <Indications title='RHX-Y' line='HX' guard='Tanque' land='Y' /> 
+              : null
+            }
             </Grid>
             <Grid item xs={6}>
-                <MetricsForm/>
+          
+              {
+              activeStep === 0 ? <MetricsForm step={activeStep}/>
+              : activeStep === 1  ? <MetricsForm step={activeStep}/> 
+              : activeStep === 2 ? <MetricsForm step={activeStep}/> 
+              : null
+            }
             </Grid>
 
       <Box sx={{ width: '100%', marginLeft: 10, marginRight: 10 }}>
