@@ -137,9 +137,7 @@ const getValueTen  = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElemen
             </Grid>
 
       </Grid>
-      <Box sx={{alignSelf: 'right', marginLeft: 35, marginTop: 1}} display="flex" alignItems="flex-end" justifyContent="center">
-          <Button variant="outlined">SIGUIENTE</Button>
-      </Box>
+
     </Box>
   )
 }
